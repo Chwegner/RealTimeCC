@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6191ca0c-38e1-4985-a06d-48aabef629ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/home.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/menu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/user.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/userAnlegen.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-Black.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-BlackItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-Bold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-BoldItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-Italic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-LightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-Medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-MediumItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-Regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-Thin.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto/Roboto-ThinItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/office.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/footer.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/header.ejs" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,13 +49,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="50">
               <caret line="38" column="24" lean-forward="true" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitattributes">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -161,7 +143,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549111899882" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549112131686" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
@@ -176,11 +158,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Chef\Desktop\RealTimeCC" />
       <recent name="C:\Users\Chef\Desktop\RealTimeCC\public\fonts" />
       <recent name="C:\Users\Chef\Desktop\RealTimeCC\public\images" />
       <recent name="C:\Users\Chef\Desktop\RealTimeCC\public\assets" />
       <recent name="C:\Users\Chef\Desktop\RealTimeCC\public\css" />
-      <recent name="C:\Users\Chef\Desktop\RealTimeCC\styles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Chef\Desktop\RealTimeCC\public" />
@@ -227,12 +209,20 @@
       <workItem from="1549029660671" duration="1541000" />
       <workItem from="1549031297684" duration="9425000" />
       <workItem from="1549041718070" duration="911000" />
-      <workItem from="1549106602782" duration="5214000" />
+      <workItem from="1549106602782" duration="5532000" />
     </task>
+    <task id="LOCAL-00001" summary="Layout added">
+      <created>1549112091328</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1549112091328</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37146000" />
+    <option name="totallyTimeSpent" value="37464000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -321,6 +311,10 @@
         <option value="$PROJECT_DIR$/scripts/userAnlegen.js" />
       </list>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Layout added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Layout added" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/mysql/Readme.md">
@@ -467,6 +461,9 @@
           <caret line="38" column="24" lean-forward="true" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
