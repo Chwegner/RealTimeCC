@@ -26,21 +26,44 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 // Static Path
 app.use(express.static(path.join(__dirname, 'public')));
-// Startseite rendern
+app.use('/public', express.static('public'));
+// GET - Aufrufe rendern
 app.get('/', function (req, res) {
     res.render('index');
 });
-// User-Anlegen
-app.post('/', function (req, res) {
-    var vorname = req.body.vorname;
-    var nachname = req.body.nachname;
-    var position = req.body.position;
-    var standort = req.body.standort;
-    var telefon = req.body.telefon;
-    var mail = req.body.mail;
-    var user = new Array(vorname, nachname, position, standort, telefon, mail);
-    anlegen.newUser(connection, user);
+app.get('/overview.ejs', function (req, res) {
+    res.render('overview');
 });
+app.get('/users.ejs', function (req, res) {
+    res.render('users');
+});
+app.get('/locations.ejs', function (req, res) {
+    res.render('locations');
+});
+app.get('/times.ejs', function (req, res) {
+    res.render('times');
+});
+app.get('/timesheets.ejs', function (req, res) {
+    res.render('timesheets');
+});
+// POST - Aufrufe rendern
+app.post('/overview.ejs', function (req, res) {
+    res.render('overview');
+});
+// app.post('/', function (req, res) {
+//
+//     let vorname = req.body.vorname;
+//     let nachname = req.body.nachname;
+//     let position = req.body.position;
+//     let standort = req.body.standort;
+//     let telefon = req.body.telefon;
+//     let mail = req.body.mail;
+//
+//     let user = new Array(vorname, nachname, position, standort, telefon, mail);
+//
+//     anlegen.newUser(connection, user);
+//
+// });
 // App Initialisierung
 try {
     app.listen(3000, function () {

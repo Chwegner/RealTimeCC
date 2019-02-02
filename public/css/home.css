@@ -1,0 +1,95 @@
+@font-face
+{
+    font-family: roboto-light;
+    src: url("../fonts/Roboto/Roboto-Light.ttf");
+}
+
+@font-face
+{
+    font-family: roboto-bold;
+    src: url("../fonts/Roboto/Roboto-Bold.ttf");
+}
+
+*
+{
+    margin: 0px auto;
+    padding: 0px;
+    border: 0px;
+
+}
+
+
+body
+{
+    background: url(../images/office.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#menu
+{
+    background-color: #59637F;
+    width: 100%;
+    height: 8em;
+
+}
+
+#logo
+{
+    background-color: #617DCC;
+    height: 100%;
+    width: 15em;
+    margin-left: 0;
+    align-items: center;
+    float: left;
+}
+
+#logotext
+{
+    text-align: center;
+    font-size: 8em;
+    color: #C6D5FF;
+    line-height: 1em;
+
+
+}
+
+#panel
+{
+    background-color: #3D4E7F;
+    width: 100%;
+    min-height: 55em;
+    margin: 0 auto;
+    opacity: 0.6;
+}
+
+#buttonbar
+{
+    background-color: transparent;
+    height: 8em;
+    margin-left: 0em;
+    margin-top: 0em;
+    width: 100em;
+    float: left;
+
+
+}
+
+.menubutton
+{
+    font-size: 3em;
+    color: #C6D5FF;
+    line-height: 2.8em;
+    margin-left: 1em;
+    float: left;
+    font-family: roboto-light;
+
+}
+
+.menubutton:hover
+{
+    color: #7A9CFF;
+}
+

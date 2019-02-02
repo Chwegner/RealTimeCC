@@ -1,27 +1,31 @@
-<% include partials/header.ejs%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RealTimeCC - Administration</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/login.css">
+</head>
+<body>
+<div id="overlay"></div>
+<div id="panel">
+    <form method="post" action="/overview.ejs">
+        <label id="header">
+            RealTimeCC - Administrator
+        </label>
+        <label id="loginlabel">
+            Login:
+        </label>
+        <input type="text" id="loginfeld">
+        <label id="pwlabel">
+            Passwort:
+        </label>
+        <input type="password" id="pwfeld">
+        <a href="html/overview.html">
+            <input type="submit" id="submit" value="Senden">
+        </a>
+    </form>
+</div>
 
-<form method="post" action="/">
-    <label>Vorname</label>
-    <input type="text" name="vorname">
-    <br>
-    <label>Nachname</label>
-    <input type="text" name="nachname">
-    <br>
-    <label>Position</label>
-    <input type="text" name="position">
-    <br>
-    <label>Standort</label>
-    <input type="text" name="standort">
-    <br>
-    <label>Telefon</label>
-    <input type="text" name="telefon">
-    <br>
-    <label>E-Mail</label>
-    <input type="text" name="mail">
-    <br>
-    <input type="submit" value="Absenden">
+</body>
+</html>
 
-</form>
-
-
-<%include partials/footer.ejs%>

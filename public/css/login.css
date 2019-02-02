@@ -1,0 +1,134 @@
+@font-face
+{
+    font-family: roboto-bold;
+    src: url("../fonts/Roboto/Roboto-Bold.ttf");
+}
+
+*
+{
+    margin: 0px auto;
+    padding: 0px;
+    border: 0px;
+}
+
+body
+{
+    background: url(../images/office.jpg) no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+#overlay
+{
+    background-color: #3D4E7F;
+    width: 100%;
+    min-height: 60em;
+    margin: 0 auto;
+    opacity: 0.6;
+}
+
+
+#panel
+{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    height: 50%;
+    width: 50%;
+    background-color: #3D4E7F;
+    border-radius: 20px 20px 20px 20px;
+
+    opacity: 0.9;
+
+}
+
+#header
+{
+    position: absolute;
+    top: 1em;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    font-family: roboto-bold;
+    font-size: 2em;
+    color: #C6D5FF;
+
+}
+
+#loginlabel
+{
+    position: absolute;
+    top: 5em;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    font-family: roboto-bold;
+    font-size: 1.5em;
+    color: #C6D5FF;
+}
+
+
+#loginfeld
+{
+    position: absolute;
+    top: 7em;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: left;
+    font-size: 150%;
+    background-color: #C6D5FF;
+
+}
+
+#pwlabel
+{
+    position: absolute;
+    top: 10em;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    font-family: roboto-bold;
+    font-size: 1.5em;
+    color: #C6D5FF;
+}
+
+#pwfeld
+{
+    position: absolute;
+    top: 12em;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: left;
+    font-size: 150%;
+    background-color: #C6D5FF;
+
+}
+
+#submit
+{
+    position: absolute;
+    top: 20em;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: center;
+    font-size: 120%;
+    background-color: #617DCC;
+    color: #C6D5FF;
+}
+
+#submit:hover
+{
+    background-color: #7A9CFF;
+
+}
+
+
