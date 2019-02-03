@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Standort</th>
+    </tr>
+    <% location.forEach(function (location) { %>
+        <tr>
+            <td>
+                <%= location.ID %>
+            </td>
+            <td>
+                <%= location.standort %>
+            </td>
+        </tr>
+    <% }) %>
+</table>
