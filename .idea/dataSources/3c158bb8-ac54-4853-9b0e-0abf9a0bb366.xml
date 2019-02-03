@@ -2,7 +2,7 @@
 <dataSource name="zeiterfassung@localhost">
   <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.14">
     <root id="1">
-      <ServerVersion>10.1.36</ServerVersion>
+      <ServerVersion>10.1.37</ServerVersion>
       <Dbms>MARIADB</Dbms>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
@@ -13,7 +13,7 @@
     <schema id="3" parent="1" name="information_schema">
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="4" parent="1" name="lotto_spiel">
+    <schema id="4" parent="1" name="lotto">
       <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="5" parent="1" name="mysql">
@@ -969,51 +969,107 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="244" parent="9" name="userdaten"/>
-    <column id="245" parent="244" name="ID">
+    <table id="244" parent="9" name="positionen"/>
+    <table id="245" parent="9" name="standorte"/>
+    <table id="246" parent="9" name="userdaten"/>
+    <column id="247" parent="244" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="246" parent="244" name="vorname">
+    <column id="248" parent="244" name="position">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="249" parent="244" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="250" parent="245" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="251" parent="245" name="standort">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="252" parent="245" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="253" parent="246" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="254" parent="246" name="vorname">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="244" name="nachname">
+    <column id="255" parent="246" name="nachname">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="244" name="stellung">
+    <column id="256" parent="246" name="positionID">
       <Position>4</Position>
-      <DataType>varchar(30)|0s</DataType>
+      <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="244" name="standort">
+    <column id="257" parent="246" name="standortID">
       <Position>5</Position>
-      <DataType>varchar(30)|0s</DataType>
+      <DataType>int(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="244" name="telefon">
+    <column id="258" parent="246" name="telefon">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="244" name="mail">
+    <column id="259" parent="246" name="mail">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="252" parent="244" name="PRIMARY">
+    <index id="260" parent="246" name="positionID">
+      <ColNames>positionID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="261" parent="246" name="standortID">
+      <ColNames>standortID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="262" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
+    <foreign-key id="263" parent="246" name="userdaten_ibfk_2">
+      <ColNames>positionID</ColNames>
+      <RefSchemaName>zeiterfassung</RefSchemaName>
+      <RefTableName>positionen</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="264" parent="246" name="userdaten_ibfk_1">
+      <ColNames>standortID</ColNames>
+      <RefSchemaName>zeiterfassung</RefSchemaName>
+      <RefTableName>standorte</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

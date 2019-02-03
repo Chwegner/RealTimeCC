@@ -1,13 +1,13 @@
-import {userAnlegen} from "./scripts/userAnlegen";
+import {db} from "./scripts/db";
 
-let anlegen: userAnlegen = new userAnlegen();
+let database: db = new db();
 
 let express = require('express');
 let bodyParser = require('body-parser');
 let path = require('path');
 let mysql = require('mysql');
 
-let connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -47,7 +47,14 @@ app.get('/users.ejs', function (req, res) {
     res.render('users');
 });
 app.get('/locations.ejs', function (req, res) {
-    res.render('locations');
+    let sql = 'SELECT * FROM standorte';
+    let query = connection.query(sql, (err, results) => {
+            if (err) throw err;
+            res.render('locations', {
+                location: results
+            });
+        }
+    );
 });
 app.get('/times.ejs', function (req, res) {
     res.render('times');
@@ -59,24 +66,24 @@ app.get('/timesheets.ejs', function (req, res) {
 
 // POST - Aufrufe rendern
 app.post('/overview.ejs', function (req, res) {
-   res.render('overview');
+    res.render('overview');
 });
 
 
 // app.post('/', function (req, res) {
-//
-//     let vorname = req.body.vorname;
-//     let nachname = req.body.nachname;
-//     let position = req.body.position;
-//     let standort = req.body.standort;
-//     let telefon = req.body.telefon;
-//     let mail = req.body.mail;
-//
-//     let user = new Array(vorname, nachname, position, standort, telefon, mail);
-//
-//     anlegen.newUser(connection, user);
-//
-// });
+// //
+// //     let vorname = req.body.vorname;
+// //     let nachname = req.body.nachname;
+// //     let position = req.body.position;
+// //     let standort = req.body.standort;
+// //     let telefon = req.body.telefon;
+// //     let mail = req.body.mail;
+// //
+// //     let user = new Array(vorname, nachname, position, standort, telefon, mail);
+// //
+// //     anlegen.newUser(connection, user);
+// //
+// // });
 
 // App Initialisierung
 try {
@@ -100,7 +107,7 @@ try {
     console.log('Server konnte nicht gestartet werden. *cry*')
 }
 
-function connect(): any {
+export function connect(): any {
     return connection;
 
 }

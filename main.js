@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var userAnlegen_1 = require("./scripts/userAnlegen");
-var anlegen = new userAnlegen_1.userAnlegen();
+var db_1 = require("./scripts/db");
+var database = new db_1.db();
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -38,7 +38,14 @@ app.get('/users.ejs', function (req, res) {
     res.render('users');
 });
 app.get('/locations.ejs', function (req, res) {
-    res.render('locations');
+    var sql = 'SELECT * FROM standorte';
+    var query = connection.query(sql, function (err, results) {
+        if (err)
+            throw err;
+        res.render('locations', {
+            location: results
+        });
+    });
 });
 app.get('/times.ejs', function (req, res) {
     res.render('times');
@@ -51,19 +58,19 @@ app.post('/overview.ejs', function (req, res) {
     res.render('overview');
 });
 // app.post('/', function (req, res) {
-//
-//     let vorname = req.body.vorname;
-//     let nachname = req.body.nachname;
-//     let position = req.body.position;
-//     let standort = req.body.standort;
-//     let telefon = req.body.telefon;
-//     let mail = req.body.mail;
-//
-//     let user = new Array(vorname, nachname, position, standort, telefon, mail);
-//
-//     anlegen.newUser(connection, user);
-//
-// });
+// //
+// //     let vorname = req.body.vorname;
+// //     let nachname = req.body.nachname;
+// //     let position = req.body.position;
+// //     let standort = req.body.standort;
+// //     let telefon = req.body.telefon;
+// //     let mail = req.body.mail;
+// //
+// //     let user = new Array(vorname, nachname, position, standort, telefon, mail);
+// //
+// //     anlegen.newUser(connection, user);
+// //
+// // });
 // App Initialisierung
 try {
     app.listen(3000, function () {
@@ -88,3 +95,4 @@ catch (e) {
 function connect() {
     return connection;
 }
+exports.connect = connect;
