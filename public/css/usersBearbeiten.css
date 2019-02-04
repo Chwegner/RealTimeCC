@@ -1,0 +1,37 @@
+@import "userAnlegen.css";
+
+#bearbeitenPanel
+{
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 55em;
+    width: 70%;
+    background-color: #3D4E7F;
+    opacity: 0.5;
+
+}
+
+table
+{
+    position: absolute;
+    margin-left: 20%;
+    margin-right: 20%;
+    height: auto;
+    width: 60%;
+    opacity: 1;
+    font-family: roboto-bold;
+    font-size: 2em;
+    z-index: 1;
+    text-align: left;
+    overflow: scroll;
+    margin-top: 1em;
+
+}
+
+tr
+{
+    padding: 0px 0px 0px 0px;
+
+}
