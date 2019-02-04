@@ -9,8 +9,9 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
-    database: 'zeiterfassung'
+    password: 'root',
+    database: 'zeiterfassung',
+    multipleStatements: true
 });
 var app = express();
 var logger = function logger(req, res, next) {
@@ -35,7 +36,15 @@ app.get('/overview.ejs', function (req, res) {
     res.render('overview');
 });
 app.get('/users.ejs', function (req, res) {
-    res.render('users');
+    var sql = 'select * from positionen; select * from standorte';
+    var query = connection.query(sql, function (err, results) {
+        if (err)
+            throw err;
+        res.render('users', {
+            dataPos: results[0],
+            dataLoc: results[1]
+        });
+    });
 });
 app.get('/locations.ejs', function (req, res) {
     var sql = 'SELECT * FROM standorte';
@@ -57,20 +66,16 @@ app.get('/timesheets.ejs', function (req, res) {
 app.post('/overview.ejs', function (req, res) {
     res.render('overview');
 });
-// app.post('/', function (req, res) {
-// //
-// //     let vorname = req.body.vorname;
-// //     let nachname = req.body.nachname;
-// //     let position = req.body.position;
-// //     let standort = req.body.standort;
-// //     let telefon = req.body.telefon;
-// //     let mail = req.body.mail;
-// //
-// //     let user = new Array(vorname, nachname, position, standort, telefon, mail);
-// //
-// //     anlegen.newUser(connection, user);
-// //
-// // });
+app.post('/users.ejs', function (req, res) {
+    var vorname = req.body.vorname;
+    var nachname = req.body.nachname;
+    var position = req.body.position;
+    var standort = req.body.standort;
+    var telefon = req.body.telefon;
+    var mail = req.body.mail;
+    var user = new Array(vorname, nachname, position, standort, telefon, mail);
+    database.newUser(connection, user);
+});
 // App Initialisierung
 try {
     app.listen(3000, function () {
@@ -92,7 +97,3 @@ try {
 catch (e) {
     console.log('Server konnte nicht gestartet werden. *cry*');
 }
-function connect() {
-    return connection;
-}
-exports.connect = connect;

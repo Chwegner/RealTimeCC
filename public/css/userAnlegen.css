@@ -38,9 +38,10 @@
 {
     position: absolute;
     margin-top: 1em;
-    margin-left: 15%;
+    margin-left: 25%;
+    margin-right: 25%;
     height: 55em;
-    width: 85%;
+    width: 50%;
     background-color: #3D4E7F;
     opacity: 0.5;
 }
@@ -48,7 +49,7 @@
 #anlegenGrid
 {
     position: absolute;
-    margin-top: 1em;
+    margin-top: 0.5em;
     margin-left: 35%;
     height: 70%;
     width: 30%;
@@ -100,9 +101,9 @@
     grid-column: 1 / 2;
     grid-row: 13 / 14;
 
+    margin-top: 1em;
     width: 200%;
     height: 40%;
-    margin-left: 3em;
 
     font-size: 0.8em;
     font-family: roboto-bold;
