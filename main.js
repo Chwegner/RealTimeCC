@@ -46,6 +46,19 @@ app.get('/users.ejs', function (req, res) {
         });
     });
 });
+app.get('/usersBearbeiten.ejs', function (req, res) {
+    var sql = 'SELECT t1.*, t2.standort as standort, t3.position as position ' +
+        'from userdaten as t1, standorte as t2, positionen as t3 ' +
+        'where t2.ID = t1.standortID and t3.ID = t1.positionID ' +
+        'order by t1.ID';
+    var query = connection.query(sql, function (err, results) {
+        if (err)
+            throw err;
+        res.render('usersBearbeiten', {
+            userAll: results
+        });
+    });
+});
 app.get('/locations.ejs', function (req, res) {
     var sql = 'SELECT * FROM standorte';
     var query = connection.query(sql, function (err, results) {
@@ -75,6 +88,7 @@ app.post('/users.ejs', function (req, res) {
     var mail = req.body.mail;
     var user = new Array(vorname, nachname, position, standort, telefon, mail);
     database.newUser(connection, user);
+    res.redirect('/users.ejs');
 });
 // App Initialisierung
 try {

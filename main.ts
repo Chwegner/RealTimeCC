@@ -58,6 +58,21 @@ app.get('/users.ejs', function (req, res) {
 
     });
 });
+
+app.get('/usersBearbeiten.ejs', function (req, res) {
+    let sql = 'SELECT t1.*, t2.standort as standort, t3.position as position ' +
+        'from userdaten as t1, standorte as t2, positionen as t3 ' +
+        'where t2.ID = t1.standortID and t3.ID = t1.positionID ' +
+        'order by t1.ID';
+    let query = connection.query(sql, (err, results) => {
+            if (err) throw err;
+            res.render('usersBearbeiten', {
+                userAll: results
+            });
+        }
+    );
+});
+
 app.get('/locations.ejs', function (req, res) {
     let sql = 'SELECT * FROM standorte';
     let query = connection.query(sql, (err, results) => {
@@ -94,6 +109,7 @@ app.post('/users.ejs', function (req, res) {
 
     database.newUser(connection, user);
 
+    res.redirect('/users.ejs');
 });
 
 // App Initialisierung

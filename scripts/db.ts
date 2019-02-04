@@ -16,7 +16,6 @@ export class db {
         } catch (e) {
             console.log('Fehler beim eintragen in DB *heul*', e);
         }
-
     }
 
 
