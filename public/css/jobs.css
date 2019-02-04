@@ -1,0 +1,178 @@
+@import "home.css";
+
+#jobsPanel
+{
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 55em;
+    width: 70%;
+    background-color: #3D4E7F;
+    opacity: 0.5;
+}
+
+table
+{
+    position: absolute;
+    margin-left: 20%;
+    margin-right: 60%;
+    height: auto;
+    width: 20%;
+    opacity: 1;
+
+    font-size: 3em;
+    font-family: roboto-light;
+    color: #98D5FF;
+
+    z-index: 1;
+    text-align: left;
+    overflow: scroll;
+    margin-top: 1em;
+
+}
+
+th
+{
+    text-align: center;
+    background-color: #59637F;
+    color: #C6D5FF;
+    font-family: roboto-bold;
+}
+
+tr:nth-child(even)
+{
+    background-color: #7A9CFF;
+    color: #C6D5FF;
+}
+
+tr:nth-child(odd)
+{
+    background-color: #C6D5FF;
+    color: #7A9CFF;
+}
+
+form
+{
+    position: absolute;
+    margin-left: 50%;
+    margin-right: 20%;
+    height: auto;
+    width: 30%;
+    opacity: 1;
+    font-family: roboto-bold;
+    font-size: 2em;
+    z-index: 1;
+    text-align: left;
+    margin-top: 1em;
+
+    color: #98D5FF;
+    font-size: 3em;
+    font-family: roboto-light;
+}
+
+#positionAnlegen
+{
+    position: absolute;
+    margin-left: 50%;
+    margin-right: 20%;
+    height: auto;
+    width: 30%;
+    opacity: 1;
+    font-family: roboto-bold;
+    font-size: 2em;
+    z-index: 1;
+    text-align: left;
+    margin-top: 11em;
+
+    color: #98D5FF;
+    font-size: 3em;
+    font-family: roboto-light;
+}
+
+
+#tableButton
+{
+    position: absolute;
+    background: #C6D5FF;
+    color: #59637F;
+    height: 2em;
+    width: 7.5em;
+    margin-left: 0;
+    margin-top: 0.5em;
+    z-index: 1;
+
+    text-align: center;
+    font-size: 2em;
+    line-height: 2em;
+    font-family: roboto-light;
+}
+
+#anlegenButton
+{
+    position: absolute;
+    background: #C6D5FF;
+    color: #59637F;
+    height: 2em;
+    width: 7.5em;
+    margin-left: 0;
+    margin-top: 3em;
+    z-index: 1;
+
+    text-align: center;
+    font-size: 2em;
+    line-height: 2em;
+    font-family: roboto-light;
+}
+
+#textfeld
+{
+    width: 75%;
+    height: 50%;
+    background-color: #C6D5FF;
+
+    font-size: 0.8em;
+    font-family: roboto-bold;
+    color: #3D4E7F;
+}
+
+#Choicebox
+{
+    width: 15%;
+    height: 50%;
+    background-color: #C6D5FF;
+    justify-self: left;
+    margin-left: 0;
+    margin-right: 5em;
+
+    font-size: 0.8em;
+    font-family: roboto-bold;
+    color: #3D4E7F;
+
+}
+
+#submitButton
+{
+    grid-column: 1 / 2;
+    grid-row: 13 / 14;
+
+    margin-top: 1em;
+    width: 75%;
+    height: 40%;
+
+    font-size: 0.8em;
+    font-family: roboto-bold;
+    color: #3D4E7F;
+
+    border-radius: 20px 20px 20px 20px;
+
+    background-color: #7A9CFF;
+    color: #C6D5FF;
+}
+
+#submitButton:hover
+{
+    background-color: #C6D5FF;
+    color: #7A9CFF;
+
+}

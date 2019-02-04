@@ -10,7 +10,7 @@ let mysql = require('mysql');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'zeiterfassung',
     multipleStatements: true
 });
@@ -74,17 +74,33 @@ app.get('/usersBearbeiten.ejs', function (req, res) {
 });
 
 app.get('/locations.ejs', function (req, res) {
-    let sql = 'SELECT * FROM standorte';
-    let query = connection.query(sql, (err, results) => {
+    let id = req.body.id;
+    let sql = 'SELECT * FROM standorte; SELECT standort FROM standorte WHERE ID = ?';
+    let query = connection.query(sql, [id], (err, results) => {
             if (err) throw err;
             res.render('locations', {
-                location: results
+                location: results[0],
+                getlocation: results[1]
             });
         }
     );
 });
-app.get('/times.ejs', function (req, res) {
-    res.render('times');
+
+app.get('/locationsAnlegen.ejs', function (req, res) {
+    res.render('locationsAnlegen');
+});
+
+app.get('/jobs.ejs', function (req, res) {
+    let id = req.body.id;
+    let sql = 'SELECT * FROM positionen; SELECT position FROM positionen WHERE ID = ?';
+    let query = connection.query(sql, [id], (err, results) => {
+            if (err) throw err;
+            res.render('jobs', {
+                jobs: results[0],
+                getjobs: results[1]
+            });
+        }
+    );
 });
 app.get('/timesheets.ejs', function (req, res) {
     res.render('timesheets');
@@ -94,6 +110,22 @@ app.get('/timesheets.ejs', function (req, res) {
 // POST - Aufrufe rendern
 app.post('/overview.ejs', function (req, res) {
     res.render('overview');
+});
+
+app.post('/locations.ejs', function (req, res) {
+    let standort = req.body.standortNeu;
+
+    database.newLocation(connection, standort);
+
+    res.redirect('/locations.ejs');
+});
+
+app.post('/jobs.ejs', function (req, res) {
+    let position = req.body.positionNeu;
+
+    database.newPosition(connection, position);
+
+    res.redirect('/jobs.ejs');
 });
 
 app.post('/users.ejs', function (req, res) {

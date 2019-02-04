@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Position</th>
+    </tr>
+    <% jobs.forEach(function (jobs) { %>
+        <tr>
+            <td>
+                <%= jobs.ID %>
+            </td>
+            <td>
+                <%= jobs.position %>
+            </td>
+        </tr>
+    <% }) %>
+</table>

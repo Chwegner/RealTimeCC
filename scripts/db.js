@@ -20,6 +20,26 @@ var db = /** @class */ (function () {
             console.log('Fehler beim eintragen in DB *heul*', e);
         }
     };
+    db.prototype.newLocation = function (connection, location) {
+        var sql = 'INSERT INTO standorte (standort) values (?)';
+        try {
+            connection.query(sql, [location]);
+            console.log('Neuer Standort angelegt!');
+        }
+        catch (e) {
+            console.log('Fehler beim Spoeichern', e);
+        }
+    };
+    db.prototype.newPosition = function (connection, position) {
+        var sql = 'INSERT INTO positionen (position) values (?)';
+        try {
+            connection.query(sql, [position]);
+            console.log('Neue Position angelegt!');
+        }
+        catch (e) {
+            console.log('Fehler beim Speichern', e);
+        }
+    };
     return db;
 }());
 exports.db = db;

@@ -9,7 +9,7 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: '',
     database: 'zeiterfassung',
     multipleStatements: true
 });
@@ -60,17 +60,31 @@ app.get('/usersBearbeiten.ejs', function (req, res) {
     });
 });
 app.get('/locations.ejs', function (req, res) {
-    var sql = 'SELECT * FROM standorte';
-    var query = connection.query(sql, function (err, results) {
+    var id = req.body.id;
+    var sql = 'SELECT * FROM standorte; SELECT standort FROM standorte WHERE ID = ?';
+    var query = connection.query(sql, [id], function (err, results) {
         if (err)
             throw err;
         res.render('locations', {
-            location: results
+            location: results[0],
+            getlocation: results[1]
         });
     });
 });
-app.get('/times.ejs', function (req, res) {
-    res.render('times');
+app.get('/locationsAnlegen.ejs', function (req, res) {
+    res.render('locationsAnlegen');
+});
+app.get('/jobs.ejs', function (req, res) {
+    var id = req.body.id;
+    var sql = 'SELECT * FROM positionen; SELECT position FROM positionen WHERE ID = ?';
+    var query = connection.query(sql, [id], function (err, results) {
+        if (err)
+            throw err;
+        res.render('jobs', {
+            jobs: results[0],
+            getjobs: results[1]
+        });
+    });
 });
 app.get('/timesheets.ejs', function (req, res) {
     res.render('timesheets');
@@ -78,6 +92,16 @@ app.get('/timesheets.ejs', function (req, res) {
 // POST - Aufrufe rendern
 app.post('/overview.ejs', function (req, res) {
     res.render('overview');
+});
+app.post('/locations.ejs', function (req, res) {
+    var standort = req.body.standortNeu;
+    database.newLocation(connection, standort);
+    res.redirect('/locations.ejs');
+});
+app.post('/jobs.ejs', function (req, res) {
+    var position = req.body.positionNeu;
+    database.newPosition(connection, position);
+    res.redirect('/jobs.ejs');
 });
 app.post('/users.ejs', function (req, res) {
     var vorname = req.body.vorname;

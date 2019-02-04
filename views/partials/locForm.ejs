@@ -1,0 +1,27 @@
+<form method="post" action="../locations.ejs">
+
+    <label>ID</label>
+    <br>
+    <select id="Choicebox" name="id" onchange="function f() {
+      document.getElementById('textfeld').value = '<%= getlocation.standort %>';
+    }">
+        <% location.forEach(function (location) { %>
+        <a href="/locTable"> <option><%= location.ID %></option></a>
+        <% }) %>
+    </select>
+    <br>
+    <label>Standort</label>
+    <br>
+    <input type="text" id="textfeld" name="locText">
+    <br>
+    <input type="submit" id="submitButton" value="Standort ändern" name="locBearbeiten">
+
+</form>
+
+<form method="post" id="standortAnlegen" action="../locations.ejs">
+    <label>Neuer Standort</label>
+    <br>
+    <input type="text" id="textfeld" name="standortNeu">
+    <br>
+    <input type="submit" id="submitButton" value="Bestätigen" name="locAnlegen">
+</form>

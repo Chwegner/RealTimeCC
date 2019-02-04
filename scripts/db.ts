@@ -18,6 +18,32 @@ export class db {
         }
     }
 
+    public newLocation(connection, location) {
+
+        const sql = 'INSERT INTO standorte (standort) values (?)'
+
+        try {
+            connection.query(sql, [location])
+            console.log('Neuer Standort angelegt!');
+        } catch (e) {
+            console.log('Fehler beim Spoeichern', e)
+        }
+
+    }
+
+    public newPosition(connection, position) {
+
+        const sql = 'INSERT INTO positionen (position) values (?)'
+
+        try {
+            connection.query(sql, [position])
+            console.log('Neue Position angelegt!');
+        } catch (e) {
+            console.log('Fehler beim Speichern', e)
+        }
+
+    }
+
 
 }
 
