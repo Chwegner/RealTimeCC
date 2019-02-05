@@ -7,6 +7,8 @@ let bodyParser = require('body-parser');
 let path = require('path');
 let mysql = require('mysql');
 
+let loggedIn: boolean = false;
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -41,6 +43,11 @@ app.use('/public', express.static('public'));
 app.get('/', function (req, res) {
     res.render('index');
 });
+
+app.get('/index.ejs', function (req, res) {
+    res.render('index');
+});
+
 app.get('/overview.ejs', function (req, res) {
     res.render('overview');
 });
@@ -108,6 +115,16 @@ app.get('/timesheets.ejs', function (req, res) {
 
 
 // POST - Aufrufe rendern
+app.post('/index.ejs', function (req, res) {
+    let username = req.body.user;
+    let pw = req.body.pw;
+
+    loggedIn = database.getUserdaten(connection, username, pw);
+    console.log(loggedIn);
+    //
+    res.redirect('index.ejs');
+});
+
 app.post('/overview.ejs', function (req, res) {
     res.render('overview');
 });

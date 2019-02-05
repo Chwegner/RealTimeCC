@@ -6,6 +6,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var mysql = require('mysql');
+var loggedIn = false;
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -30,6 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static('public'));
 // GET - Aufrufe rendern
 app.get('/', function (req, res) {
+    res.render('index');
+});
+app.get('/index.ejs', function (req, res) {
     res.render('index');
 });
 app.get('/overview.ejs', function (req, res) {
@@ -90,6 +94,14 @@ app.get('/timesheets.ejs', function (req, res) {
     res.render('timesheets');
 });
 // POST - Aufrufe rendern
+app.post('/index.ejs', function (req, res) {
+    var username = req.body.user;
+    var pw = req.body.pw;
+    loggedIn = database.getUserdaten(connection, username, pw);
+    console.log(loggedIn);
+    //
+    res.redirect('index.ejs');
+});
 app.post('/overview.ejs', function (req, res) {
     res.render('overview');
 });
