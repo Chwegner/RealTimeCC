@@ -228,7 +228,9 @@ app.post('/users.ejs', function (req, res) {
 // ==============================================================================
 //------- App Initialisierung -------------------------------------------------//
 try {
+    // NodeJS Server starten
     app.listen(3000, function () {
+        console.log('NodeJS Server gestartet: Port 3000 *smile*');
         // mit Datenbank verbinden
         try {
             connection.connect(function (err) {
@@ -240,8 +242,6 @@ try {
         catch (e) {
             console.log('Datenbankverbindung gescheitert! *facepalm*');
         }
-        // NodeJS Server starten
-        console.log('NodeJS Server gestartet: Port 3000 *smile*');
     });
 }
 catch (e) {
