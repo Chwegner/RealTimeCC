@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <th>UserID</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Position</th>
+        <th>Standort</th>
+        <th>Telefon</th>
+        <th>Mail</th>
+    </tr>
+    <% userAll.forEach(function (userAll) { %>
+        <tr>
+            <td><%= userAll.ID %></td>
+            <td><%= userAll.vorname %></td>
+            <td><%= userAll.nachname %></td>
+            <td><%= userAll.position %></td>
+            <td><%= userAll.standort %></td>
+            <td><%= userAll.telefon %></td>
+            <td><%= userAll.mail %></td>
+        </tr>
+
+    <% }); %>
+</table>

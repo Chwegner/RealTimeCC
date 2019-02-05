@@ -1,4 +1,9 @@
+import {logindaten} from "./logindaten";
+
 export class db {
+
+    private login: logindaten = new logindaten();
+
     public newUser(connection, liste) {
 
         let vorname = liste[0];
@@ -8,10 +13,16 @@ export class db {
         let telefon = liste[4];
         let mail = liste[5];
 
-        const sql = 'INSERT INTO userdaten (vorname, nachname, positionID, standortID, telefon, mail)' +
-            'values (?, ?, ?, ?, ?, ?)';
+        let username = this.login.createUsername(vorname, nachname);
+        let passwort = this.login.createPassword();
+
+
+        const sql = 'INSERT INTO userdaten (vorname, nachname, positionID, standortID, ' +
+            'telefon, mail, username, passwort )' +
+            'values (?, ?, ?, ?, ?, ?, ?, ?)';
         try {
-            connection.query(sql, [vorname, nachname, position, standort, telefon, mail]);
+            connection.query(sql, [vorname, nachname, position, standort,
+                telefon, mail, username, passwort]);
             console.log('Neuer User angelegt! *fistbump*');
         } catch (e) {
             console.log('Fehler beim eintragen in DB *heul*', e);
@@ -20,7 +31,7 @@ export class db {
 
     public newLocation(connection, location) {
 
-        const sql = 'INSERT INTO standorte (standort) values (?)'
+        const sql = 'INSERT INTO standorte (standort) values (?)';
 
         try {
             connection.query(sql, [location])
@@ -33,13 +44,13 @@ export class db {
 
     public newPosition(connection, position) {
 
-        const sql = 'INSERT INTO positionen (position) values (?)'
+        const sql = 'INSERT INTO positionen (position) values (?)';
 
         try {
-            connection.query(sql, [position])
+            connection.query(sql, [position]);
             console.log('Neue Position angelegt!');
         } catch (e) {
-            console.log('Fehler beim Speichern', e)
+            console.log('Fehler beim Speichern', e);
         }
 
     }

@@ -1046,26 +1046,36 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="260" parent="246" name="positionID">
+    <column id="260" parent="246" name="username">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="261" parent="246" name="passwort">
+      <Position>9</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="262" parent="246" name="positionID">
       <ColNames>positionID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="261" parent="246" name="standortID">
+    <index id="263" parent="246" name="standortID">
       <ColNames>standortID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="262" parent="246" name="PRIMARY">
+    <key id="264" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="263" parent="246" name="userdaten_ibfk_2">
+    <foreign-key id="265" parent="246" name="userdaten_ibfk_2">
       <ColNames>positionID</ColNames>
       <RefSchemaName>zeiterfassung</RefSchemaName>
       <RefTableName>positionen</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="264" parent="246" name="userdaten_ibfk_1">
+    <foreign-key id="266" parent="246" name="userdaten_ibfk_1">
       <ColNames>standortID</ColNames>
       <RefSchemaName>zeiterfassung</RefSchemaName>
       <RefTableName>standorte</RefTableName>
