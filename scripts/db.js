@@ -46,19 +46,6 @@ var db = /** @class */ (function () {
             console.log('Fehler beim Speichern', e);
         }
     };
-    db.prototype.getUserdaten = function (connection, username, password) {
-        var sqlUser = 'SELECT ID FROM userdaten WHERE username = ? AND passwort = ? ';
-        var userid;
-        var loggedIn = false;
-        var queryUser = connection.query(sqlUser, [username], function (err, results) {
-            if (err)
-                throw err;
-            if (results[0].ID > 0) {
-                loggedIn = true;
-            }
-        });
-        return loggedIn;
-    };
     return db;
 }());
 exports.db = db;

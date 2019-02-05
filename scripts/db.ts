@@ -55,22 +55,4 @@ export class db {
 
     }
 
-    public getUserdaten(connection, username, password) {
-
-        const sqlUser = 'SELECT ID FROM userdaten WHERE username = ? AND passwort = ? ';
-
-        let userid;
-
-        let loggedIn: boolean = false;
-
-        let queryUser = connection.query(sqlUser, [username], (err, results) => {
-            if (err) throw err;
-            if (results[0].ID > 0) {
-                loggedIn = true;
-
-            }
-        });
-        return loggedIn;
-
-    }
 }
