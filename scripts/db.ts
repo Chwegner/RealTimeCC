@@ -1,4 +1,5 @@
 import {logindaten} from "./logindaten";
+import moment = require("moment");
 
 export class db {
 
@@ -51,7 +52,32 @@ export class db {
         } catch (e) {
             console.log('Fehler beim Speichern', e);
         }
+    }
+
+    public newWorkDay(connection, userID) {
+        let tag = moment().format('YYYY-MM-DD');
+        let login = moment().format('hh:mm:ss');
+
+        const sql = 'INSERT INTO zeitkonten (userID, tag, login) VALUES (?, ?, ?)';
+        try {
+            let query = connection.query(sql, [userID, tag, login]);
+        } catch (e) {
+            console.log('Fehler beim Speichern der Login-Zeit', e);
+        }
 
     }
+
+    public endWorkDay(connection, userID) {
+        let logout = moment().format('hh:mm:ss');
+
+        const sql = 'UPDATE zeitkonten SET logout = ? WHERE userID = ?';
+        try {
+            let query = connection.query(sql, [logout, userID]);
+        } catch (e) {
+            console.log('Fehler beim Speichern der Logout-Zeit', e);
+        }
+
+    }
+
 
 }

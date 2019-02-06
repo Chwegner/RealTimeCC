@@ -13,9 +13,10 @@
     "@types/node": "^10.12.20",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "moment": "^2.24.0",
     "mysql": "^2.16.0",
     "mysql2": "^1.6.4",
-    "sequelize": "^4.42.0",
-    "password-generator": "^2.2.0"
+    "password-generator": "^2.2.0",
+    "sequelize": "^4.42.0"
   }
 }

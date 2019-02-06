@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var logindaten_1 = require("./logindaten");
+var moment = require("moment");
 var db = /** @class */ (function () {
     function db() {
         this.login = new logindaten_1.logindaten();
@@ -44,6 +45,27 @@ var db = /** @class */ (function () {
         }
         catch (e) {
             console.log('Fehler beim Speichern', e);
+        }
+    };
+    db.prototype.newWorkDay = function (connection, userID) {
+        var tag = moment().format('YYYY-MM-DD');
+        var login = moment().format('hh:mm:ss');
+        var sql = 'INSERT INTO zeitkonten (userID, tag, login) VALUES (?, ?, ?)';
+        try {
+            var query = connection.query(sql, [userID, tag, login]);
+        }
+        catch (e) {
+            console.log('Fehler beim Speichern der Login-Zeit', e);
+        }
+    };
+    db.prototype.endWorkDay = function (connection, userID) {
+        var logout = moment().format('hh:mm:ss');
+        var sql = 'UPDATE zeitkonten SET logout = ? WHERE userID = ?';
+        try {
+            var query = connection.query(sql, [logout, userID]);
+        }
+        catch (e) {
+            console.log('Fehler beim Speichern der Logout-Zeit', e);
         }
     };
     return db;

@@ -14,11 +14,14 @@
     <div id="infos">(Userinfos)</div>
     <div id="buttonarea">
         <form method="post">
-            <input type="submit" class="button" name="loginButton" value="Anmelden">
+            <% if(dataLogin < 1){ %>
+                <input type="submit" class="button" name="loginButton" value="Anmelden">
+            <% } else { %>
+                <input type="submit" class="button" name="logoutButton" value="Abmelden">
+            <% } %>
         </form>
     </div>
 </div>
-
 
 </body>
 </html>
