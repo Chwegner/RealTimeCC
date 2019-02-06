@@ -9,11 +9,12 @@ let mysql = require('mysql');
 
 let loggedIn: boolean = false;
 let userloggedIn: boolean = false;
+let userloginID;
 
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'zeiterfassung',
     multipleStatements: true
 });
@@ -58,13 +59,18 @@ app.get('/index.ejs', function (req, res) {
 });
 
 app.get('/userpage.ejs', function (req, res) {
-    if (userloggedIn) {
-        res.render('userpage');
-        userloggedIn = false;
-    } else {
-        res.redirect('/index.ejs');
-    }
+
+    const sql = 'SELECT vorname FROM userdaten WHERE ID = ? ';
+
+    let query = connection.query(sql, [userloginID], function f(error, results) {
+        res.render('userpage', {
+            dataName: results[0]
+        });
+
+
+    });
 });
+
 
 // POST-Aufrufe ================================
 
@@ -78,6 +84,7 @@ app.post('/index.ejs', function (req, res) {
     let query = connection.query(sql, [username, pw], function f(error, results) {
         try {
             if (results[0].ID > 0) {
+                userloginID = results[0].ID;
                 userloggedIn = true;
                 res.redirect('/userpage.ejs');
             }
@@ -86,6 +93,14 @@ app.post('/index.ejs', function (req, res) {
             res.redirect('/index.ejs');
         }
     });
+});
+
+app.post('/userpage.ejs', function (req, res) {
+    const sql = 'INSERT INTO arbeitstage (userID, tag, login) VALUES (?, ?, ?)';
+
+        // TODO HIER Anmelden-Button-Aktion
+
+
 });
 
 

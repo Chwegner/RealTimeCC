@@ -16,7 +16,6 @@ export class db {
         let username = this.login.createUsername(vorname, nachname);
         let passwort = this.login.createPassword();
 
-
         const sql = 'INSERT INTO userdaten (vorname, nachname, positionID, standortID, ' +
             'telefon, mail, username, passwort )' +
             'values (?, ?, ?, ?, ?, ?, ?, ?)';
