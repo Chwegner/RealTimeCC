@@ -10,14 +10,54 @@
 
 <div id="userpageGrid">
 
-    <label id="morninglabel">Guten Morgen <%= dataName.vorname %>!</label>
-    <div id="infos">(Userinfos)</div>
+    <label id="morninglabel">Hallo
+        <% dataname.forEach(function (dataname) { %>
+            <%= dataname.vorname %>
+        <% }) %>
+        !
+    </label>
+
+    <div id="infos">
+
+        <p> Letzter registrierter Arbeitstag:
+            <% dataworkday.forEach(function (dataworkday) { %>
+                <%= dataworkday.dertag %>
+            <% }) %>
+        </p>
+
+        <% if (!dataKeinLogout < 1) { %>
+            <% dataKeinLogout.forEach(function (dataKeinLogout) { %>
+                <p>Für den <%= dataKeinLogout.vergessen %> liegt keine Abmeldung vor!</p>
+            <% }) %>
+        <% } %>
+        <p></p>
+        <% if (!dataLoginHeute < 1){ %>
+            Ihr heutiger Arbeitstag begann um:
+            <% dataLoginHeute.forEach(function (dataLoginHeute) { %>
+                <%= dataLoginHeute.login %>
+        <% }) } %>
+        <br>
+        <% if (!datalogout < 1){ %>
+            Ihr heutiger Arbeitstag endete um:
+            <% datalogout.forEach(function (datalogout) { %>
+                <%= datalogout.logout %>
+        <% }) } %>
+        <p></p>
+        <% if (dataLoginHeute < 1 && datalogout < 1 ){ %>
+            Wir wünschen Ihnen einen produktiven Arbeitstag!
+        <% }else { %>
+            Wir wünschen Ihnen einen schönen Feierabend!
+        <% } %>
+
+    </div>
     <div id="buttonarea">
         <form method="post">
-            <% if(dataLogin < 1){ %>
+            <% if(datalogin < 1){ %>
                 <input type="submit" class="button" name="loginButton" value="Anmelden">
-            <% } else { %>
+            <% } else if(datalogout < 1) { %>
                 <input type="submit" class="button" name="logoutButton" value="Abmelden">
+            <% } else { %>
+                <input type="submit" class="button" name="okButton" value="OK">
             <% } %>
         </form>
     </div>

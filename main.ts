@@ -11,7 +11,6 @@ let mysql = require('mysql');
 
 let loggedIn: boolean = false;
 let userloggedIn: boolean = false;
-let schonAngemeldet: boolean = false;
 let userloginID;
 
 let todayDate = moment().format('DD.MM.YYYY');
@@ -20,9 +19,10 @@ let todayTime = moment().format('HH:mm:ss');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'zeiterfassung',
-    multipleStatements: true
+    multipleStatements: true,
+    debug: false
 });
 
 let app = express();
@@ -67,18 +67,31 @@ app.get('/index.ejs', function (req, res) {
 app.get('/userpage.ejs', function (req, res) {
     let tag = moment().format('YYYY-MM-DD');
 
-    const sql = 'SELECT vorname FROM userdaten WHERE ID = ?; ' +
-        'SELECT * FROM zeitkonten where userID = ? AND tag = ?';
+    const sql =
+        'SELECT vorname FROM userdaten WHERE ID = ?; ' + // 0 Begrüßung
+        'SELECT * FROM zeitkonten WHERE userID = ? AND tag = ? ; ' + // 1 Anmeldebutton
+        'SELECT * FROM zeitkonten WHERE userID = ? AND tag = ? AND logout IS NOT NULL; ' + // 2 Abmeldebutton/Logoutzeit
+        'SELECT *, DATE_FORMAT(tag, "%d.%m.%Y") AS dertag FROM zeitkonten ' +
+        'WHERE userID = ? ORDER BY tag desc LIMIT 1; ' + // 3 letzter Arbeitstag
+        'SELECT * FROM zeitkonten WHERE userID = ? AND TAG = ? ;' + // 4 heutige Loginzeit
+        'SELECT *, DATE_FORMAT(tag, "%d.%m.%Y") AS vergessen FROM zeitkonten ' +
+        'WHERE userID = ? AND tag != ? AND logout IS NULL ;'; // 5 Logout vergessen
     try {
-        let query = connection.query(sql, [userloginID, userloginID, tag], function f(error, results) {
+
+
+        let query = connection.query(sql, [userloginID, userloginID, tag, userloginID, tag, userloginID,
+            userloginID, tag, userloginID, tag], function f(error, results) {
             res.render('userpage', {
-                dataName: results[0],
-                dataLogin: results[1]
+                dataname: results[0],
+                datalogin: results[1],
+                datalogout: results[2],
+                dataworkday: results[3],
+                dataLoginHeute: results[4],
+                dataKeinLogout: results[5]
             });
-            console.log(results[1]);
         });
     } catch (e) {
-
+        console.log('Fehler');
     }
 
 
@@ -91,12 +104,15 @@ app.get('/userpage.ejs', function (req, res) {
 app.post('/index.ejs', function (req, res) {
     let username = req.body.user;
     let pw = req.body.pw;
+    console.log(username, pw);
 
     const sql = 'SELECT ID FROM userdaten WHERE username = ? AND passwort = ? ';
 
     let query = connection.query(sql, [username, pw], function f(error, results) {
         try {
+
             if (results[0].ID > 0) {
+
                 userloginID = results[0].ID;
                 userloggedIn = true;
                 res.redirect('/userpage.ejs');
@@ -112,8 +128,10 @@ app.post('/userpage.ejs', function (req, res) {
     if (req.body.loginButton) {
         database.newWorkDay(connection, userloginID);
         res.redirect('/index.ejs');
-    } else {
+    } else if (req.body.logoutButton) {
         database.endWorkDay(connection, userloginID);
+        res.redirect('/index.ejs');
+    } else {
         res.redirect('/index.ejs');
     }
 
@@ -295,7 +313,7 @@ app.post('/users.ejs', function (req, res) {
 
 try {
     // NodeJS Server starten
-    app.listen(3000, function () {
+    app.listen(666, function () {
 
         console.log('Demon erscheint auf Port 666 ...');
         console.log(todayDate + ' ' + todayTime + ' Hallo Meister!');
