@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin-Bereich</title>
+    <link rel="stylesheet" href="../public/css/timesheets.css">
+
+</head>
+<body>
+
+<% include partials/buttonbar.ejs %>
+
+<form method="post">
+    <select id="Choicebox" name="monthChoice">
+        <option value="default" selected>Monat wählen</option>
+        <% kontomonths.forEach(function (kontomonths) { %>
+            <option value="<%= kontomonths.monat + kontomonths.jahr %>">
+                <%= kontomonths.monat; %> /
+                <%= kontomonths.jahr; %>
+            </option>
+        <% }) %>
+    </select>
+    <br>
+    <input type="submit" value="Bestätigen" id="submitButton">
+</form>
+<div id="timesheetsPanel"></div>
+
+<div id="panel"></div>
+
+</body>
+</html>

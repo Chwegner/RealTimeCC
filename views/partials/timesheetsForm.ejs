@@ -1,0 +1,15 @@
+<form method="post">
+    <select id="Choicebox" name="userChoice">
+        <option value="default" selected>User wählen</option>
+        <% kontousers.forEach(function (kontousers) { %>
+            <option value="<%= kontousers.userID %>">
+                ID:
+                <%= kontousers.userID; %> -
+                <%= kontousers.vorname; %>
+                <%= kontousers.nachname %>
+            </option>
+        <% }) %>
+    </select>
+    <br>
+    <input type="submit" value="Bestätigen" id="submitButton">
+</form>

@@ -79,5 +79,10 @@ export class db {
 
     }
 
+    public monthChoice(userID) {
+
+
+    }
+
 
 }

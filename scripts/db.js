@@ -68,6 +68,8 @@ var db = /** @class */ (function () {
             console.log('Fehler beim Speichern der Logout-Zeit', e);
         }
     };
+    db.prototype.monthChoice = function (userID) {
+    };
     return db;
 }());
 exports.db = db;

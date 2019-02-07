@@ -32,14 +32,14 @@
         <% } %>
         <p></p>
         <% if (!dataLoginHeute < 1){ %>
-            Ihr heutiger Arbeitstag begann um:
             <% dataLoginHeute.forEach(function (dataLoginHeute) { %>
+                Ihr heutiger Arbeitstag begann um:
                 <%= dataLoginHeute.login %>
         <% }) } %>
         <br>
         <% if (!datalogout < 1){ %>
-            Ihr heutiger Arbeitstag endete um:
             <% datalogout.forEach(function (datalogout) { %>
+                Ihr heutiger Arbeitstag endete um:
                 <%= datalogout.logout %>
         <% }) } %>
         <p></p>
