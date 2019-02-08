@@ -1,0 +1,23 @@
+<% let monatsDays = days.tage;
+
+console.log(monatsDays)
+days.forEach(function (days) {
+
+    monatsDays = days.tage;
+
+});
+var arbeitstage = 0;
+for (var i = 1; i <= monatsDays; i++) {
+    let d = new Date('2019', '02', i);
+
+    if ((d.getDay() != '0')) {
+        if ((d.getDay() != '6')) {
+            arbeitstage++;
+        }
+    }
+}
+var sollsekunden = arbeitstage * 8 * 60 * 60;      // Geforderte Arbeitszeit für gewählten Monat
+var istsekunden = data.arbeitssekunden;            // Tatsächlich gearbeitete Zeit des Users
+var totalSekunden = istsekunden - sollsekunden;    // Vergleich Soll/Ist Arbeitszeit
+var prozente = istsekunden / sollsekunden * 100;   // Quote Soll/Ist Arbeitszeit
+%>

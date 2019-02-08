@@ -1,0 +1,33 @@
+<div id="infos">
+
+    <p> Letzter registrierter Arbeitstag:
+        <% dataworkday.forEach(function (dataworkday) { %>
+            <%= dataworkday.dertag %>
+        <% }) %>
+    </p>
+
+    <% if (!dataKeinLogout < 1) { %>
+        <% dataKeinLogout.forEach(function (dataKeinLogout) { %>
+            <p>Für den <%= dataKeinLogout.vergessen %> liegt keine Abmeldung vor!</p>
+        <% }) %>
+    <% } %>
+    <p></p>
+    <% if (!dataLoginHeute < 1){ %>
+        <% dataLoginHeute.forEach(function (dataLoginHeute) { %>
+            Ihr heutiger Arbeitstag begann um:
+            <%= dataLoginHeute.login %>
+    <% }) } %>
+    <br>
+    <% if (!datalogout < 1){ %>
+        <% datalogout.forEach(function (datalogout) { %>
+            Ihr heutiger Arbeitstag endete um:
+            <%= datalogout.logout %>
+    <% }) } %>
+    <p></p>
+    <% if (dataLoginHeute < 1 && datalogout < 1 ){ %>
+        Wir wünschen Ihnen einen produktiven Arbeitstag!
+    <% }else { %>
+        Wir wünschen Ihnen einen schönen Feierabend!
+    <% } %>
+
+</div>

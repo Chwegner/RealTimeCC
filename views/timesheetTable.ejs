@@ -10,28 +10,13 @@
 
 <% include partials/buttonbar.ejs %>
 
-<!--<p>Monat ... für ...</p>-->
+<% include partials/timesheetTableCalc.ejs%> <!--  Kalkulation Überstunden etc.  -->
+
 <!--<p>Arbeitsstunden gesamt ...</p>-->
-<!--<p>Überstunden: ... Quote: ...</p>-->
+
 <!--<p>Fehlstunden: ... Quote: ...</p>-->
-<table>
-    <tr>
-        <th>Datum</th>
-        <th>Login</th>
-        <th>Logout</th>
-        <th>Arbeitsstunden</th>
-    </tr>
-    <% data.forEach(function (data) { %>
-        <tr>
-            <td><%= data.datum %></td>
-            <td><%= data.login %></td>
-            <td><%= data.logout %></td>
-            <td><%= data.stunden %></td>
-        </tr>
-    <% }) %>
 
-</table>
-
+<% include partials/timesheetTable.ejs %>
 
 <div id="timesheetsPanel"></div>
 

@@ -19,6 +19,7 @@ let userloginID; // ID des momentan eingeloggten Users
 let IDkontowahl = null; // Auswahl User auf 'timesheets'-Seite
 let monthChoice; // Auswahl des Zeitkonto-Monats
 let yearChoice; // Auswahl des Zeitkonto-Jahres
+let monthTotalDays;
 
 let todayDate = moment().format('DD.MM.YYYY'); // akt. Datum
 let todayTime = moment().format('HH:mm:ss');   // akt. Zeit
@@ -28,7 +29,7 @@ let todayTime = moment().format('HH:mm:ss');   // akt. Zeit
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'zeiterfassung',
     multipleStatements: true,
     debug: false
@@ -56,6 +57,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static('public'));
 //=====================================================//
+
 
 
 //VVVVVVVVVVVVVVVVVVVVVVVVV
@@ -290,15 +292,20 @@ app.get('/timesheetTable.ejs', function (req, res) {
     if (loggedIn) {
 
         const sql =
-            'SELECT DATE_FORMAT(tag, "%d.%m.%Y") AS datum, login, logout ' +
-            // TODO Arbeitsstunden //
+            'SELECT DATE_FORMAT(tag, "%d.%m.%Y") AS datum, login, logout, ' +
+            '(TIME_TO_SEC(TIMEDIFF(logout, login ))) AS arbeitssekunden ' +
             'FROM zeitkonten WHERE userID = ? AND MONTH(tag) = ? AND YEAR(tag) = ? ' +
-            'ORDER BY DAY(tag)';
+            'ORDER BY DAY(tag); ' +
+            'SELECT DAY(LAST_DAY(tag)) AS tage FROM zeitkonten ' +
+            'WHERE userID = ? AND MONTH (tag) = ? AND YEAR (tag) = ? AND logout IS NOT NULL ' +
+            'LIMIT 1; ';
 
-        let query = connection.query(sql, [IDkontowahl, monthChoice, yearChoice], function (error, results) {
+        let query = connection.query(sql, [IDkontowahl, monthChoice, yearChoice, userloginID, monthChoice, yearChoice, userloginID], function (error, results) {
             if (error) throw error;
+
             res.render('timesheetTable', {
-                data: results
+                data: results[0],
+                days: results[1]
             })
         });
     } else {
