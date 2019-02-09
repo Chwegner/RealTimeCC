@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 06. Feb 2019 um 18:25
--- Server-Version: 10.1.37-MariaDB
--- PHP-Version: 7.3.0
+-- Erstellungszeit: 08. Feb 2019 um 12:20
+-- Server-Version: 10.1.36-MariaDB
+-- PHP-Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -82,7 +82,8 @@ INSERT INTO `standorte` (`ID`, `standort`) VALUES
 (3, 'Düsseldorf'),
 (4, 'Hannover'),
 (5, 'Dortmund'),
-(6, 'Kinshasa');
+(6, 'Kinshasa'),
+(7, 'TrumpTower');
 
 -- --------------------------------------------------------
 
@@ -109,7 +110,9 @@ CREATE TABLE `userdaten` (
 INSERT INTO `userdaten` (`ID`, `vorname`, `nachname`, `positionID`, `standortID`, `telefon`, `mail`, `username`, `passwort`) VALUES
 (1, 'Hannes', 'Werner', 1, 3, '16597123', '349853ß956', NULL, NULL),
 (2, 'Dieter', 'Polen', 2, 6, '37ß60', '829ß5467', 'kack', 'kack'),
-(3, 'hannes', 'kacka', 2, 3, '32894689', 'OIKHO', 'test', 'test');
+(3, 'hannes', 'kacka', 2, 3, '32894689', 'OIKHO', 'test', 'test'),
+(4, 'günni', 'peter', 2, 3, '535', '34535', 'hallo', 'hallo'),
+(5, 'Holtei', 'Leiche', 1, 7, '720824', '89265ß', 'holeiche', 'Ydyj0S2V');
 
 -- --------------------------------------------------------
 
@@ -122,16 +125,21 @@ CREATE TABLE `zeitkonten` (
   `userID` int(11) DEFAULT NULL,
   `tag` date DEFAULT NULL,
   `login` time DEFAULT NULL,
-  `logout` time DEFAULT NULL
+  `logout` time DEFAULT NULL,
+  `arbeitsstunden` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `zeitkonten`
 --
 
-INSERT INTO `zeitkonten` (`ID`, `userID`, `tag`, `login`, `logout`) VALUES
-(2, 3, '2019-02-06', '06:05:27', '06:16:09'),
-(3, 2, '2019-02-06', '06:18:28', '06:18:37');
+INSERT INTO `zeitkonten` (`ID`, `userID`, `tag`, `login`, `logout`, `arbeitsstunden`) VALUES
+(2, 3, '2019-02-06', '06:05:27', '08:10:17', NULL),
+(3, 2, '2019-02-06', '06:18:28', '06:18:37', NULL),
+(5, 3, '2019-02-07', '08:28:15', NULL, NULL),
+(7, 4, '2019-02-07', '09:15:08', '11:44:59', NULL),
+(8, 4, '2019-02-06', '09:15:08', NULL, NULL),
+(9, 5, '2019-02-07', '12:02:29', '12:02:56', NULL);
 
 --
 -- Indizes der exportierten Tabellen
@@ -190,19 +198,19 @@ ALTER TABLE `positionen`
 -- AUTO_INCREMENT für Tabelle `standorte`
 --
 ALTER TABLE `standorte`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT für Tabelle `userdaten`
 --
 ALTER TABLE `userdaten`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT für Tabelle `zeitkonten`
 --
 ALTER TABLE `zeitkonten`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints der exportierten Tabellen

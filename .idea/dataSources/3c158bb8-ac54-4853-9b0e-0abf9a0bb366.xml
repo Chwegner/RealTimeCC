@@ -2,7 +2,7 @@
 <dataSource name="zeiterfassung@localhost">
   <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.14">
     <root id="1">
-      <ServerVersion>10.1.37</ServerVersion>
+      <ServerVersion>10.1.36</ServerVersion>
       <Dbms>MARIADB</Dbms>
       <DefaultEngine>InnoDB</DefaultEngine>
       <DefaultCasing>lower/lower</DefaultCasing>
@@ -13,7 +13,7 @@
     <schema id="3" parent="1" name="information_schema">
       <Collation>utf8_general_ci</Collation>
     </schema>
-    <schema id="4" parent="1" name="lotto">
+    <schema id="4" parent="1" name="lotto_spiel">
       <Collation>utf8_general_ci</Collation>
     </schema>
     <schema id="5" parent="1" name="mysql">
@@ -1132,16 +1132,21 @@
       <DataType>time|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="278" parent="248" name="userID">
+    <column id="278" parent="248" name="arbeitsstunden">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="279" parent="248" name="userID">
       <ColNames>userID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="279" parent="248" name="PRIMARY">
+    <key id="280" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="280" parent="248" name="zeitkonten_ibfk_1">
+    <foreign-key id="281" parent="248" name="zeitkonten_ibfk_1">
       <ColNames>userID</ColNames>
       <RefSchemaName>zeiterfassung</RefSchemaName>
       <RefTableName>userdaten</RefTableName>

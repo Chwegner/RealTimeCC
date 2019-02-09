@@ -4,6 +4,7 @@ import moment = require("moment");
 export class db {
 
     private login: logindaten = new logindaten();
+    private tage;
 
     public newUser(connection, liste) {
 
@@ -79,9 +80,18 @@ export class db {
 
     }
 
-    public monthChoice(userID) {
+    public monthDays(connection, userID, monthchoice, yearchoice) {
 
+        let sql =
+            'SELECT DAY(LAST_DAY(tag)) AS tage FROM zeitkonten ' +
+            'WHERE userID = ? AND MONTH (tag) = ? AND YEAR (tag) = ? AND logout IS NOT NULL ' +
+            'LIMIT 1';
 
+        let days = connection.query(sql, [userID, monthchoice, yearchoice], function fDays(error, results) {
+            return results[0];
+
+        });
+        return days[0];
     }
 
 

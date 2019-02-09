@@ -1,0 +1,17 @@
+<table>
+    <tr>
+        <th>Datum</th>
+        <th>Login</th>
+        <th>Logout</th>
+        <th>Arbeitszeit(Sekunden)</th>
+    </tr>
+    <% data.forEach(function (data) { %>
+        <tr>
+            <td><%= data.datum %></td>
+            <td><%= data.login %></td>
+            <td><%= data.logout %></td>
+            <td><%= data.arbeitssekunden %></td>
+        </tr>
+    <% }) %>
+
+</table>

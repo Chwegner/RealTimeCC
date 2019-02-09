@@ -68,7 +68,14 @@ var db = /** @class */ (function () {
             console.log('Fehler beim Speichern der Logout-Zeit', e);
         }
     };
-    db.prototype.monthChoice = function (userID) {
+    db.prototype.monthDays = function (connection, userID, monthchoice, yearchoice) {
+        var sql = 'SELECT DAY(LAST_DAY(tag)) AS tage FROM zeitkonten ' +
+            'WHERE userID = ? AND MONTH (tag) = ? AND YEAR (tag) = ? AND logout IS NOT NULL ' +
+            'LIMIT 1';
+        var days = connection.query(sql, [userID, monthchoice, yearchoice], function fDays(error, results) {
+            return results[0];
+        });
+        return days[0];
     };
     return db;
 }());

@@ -16,13 +16,14 @@ var userloginID; // ID des momentan eingeloggten Users
 var IDkontowahl = null; // Auswahl User auf 'timesheets'-Seite
 var monthChoice; // Auswahl des Zeitkonto-Monats
 var yearChoice; // Auswahl des Zeitkonto-Jahres
+var monthTotalDays;
 var todayDate = moment().format('DD.MM.YYYY'); // akt. Datum
 var todayTime = moment().format('HH:mm:ss'); // akt. Zeit
 // Datenbank-Verbindung ===========================//
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'zeiterfassung',
     multipleStatements: true,
     debug: false
@@ -252,15 +253,19 @@ app.get('/months.ejs', function (req, res) {
 });
 app.get('/timesheetTable.ejs', function (req, res) {
     if (loggedIn) {
-        var sql = 'SELECT DATE_FORMAT(tag, "%d.%m.%Y") AS datum, login, logout ' +
-            // TODO Arbeitsstunden //
+        var sql = 'SELECT DATE_FORMAT(tag, "%d.%m.%Y") AS datum, login, logout, ' +
+            '(TIME_TO_SEC(TIMEDIFF(logout, login ))) AS arbeitssekunden ' +
             'FROM zeitkonten WHERE userID = ? AND MONTH(tag) = ? AND YEAR(tag) = ? ' +
-            'ORDER BY DAY(tag)';
-        var query = connection.query(sql, [IDkontowahl, monthChoice, yearChoice], function (error, results) {
+            'ORDER BY DAY(tag); ' +
+            'SELECT DAY(LAST_DAY(tag)) AS tage FROM zeitkonten ' +
+            'WHERE userID = ? AND MONTH (tag) = ? AND YEAR (tag) = ? AND logout IS NOT NULL ' +
+            'LIMIT 1; ';
+        var query = connection.query(sql, [IDkontowahl, monthChoice, yearChoice, userloginID, monthChoice, yearChoice, userloginID], function (error, results) {
             if (error)
                 throw error;
             res.render('timesheetTable', {
-                data: results
+                data: results[0],
+                days: results[1]
             });
         });
     }
