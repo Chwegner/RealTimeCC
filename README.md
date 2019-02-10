@@ -43,7 +43,7 @@ Information an Mitarbeiter bei Über-/Fehlstunden-Quote über 10%
 RealTime wurde als Web-Applikation umgesetzt. Das Programm besteht aus Benutzer-
 und Administrationsbereich, sowie einer Datenbank.
 </p>
-<h5>Mitarbeiter-Bereich:</h5>
+<b>Mitarbeiter-Bereich:</b>
 <p>
 Die Mitarbeiter können sich mit ihren individuellen Zugangsdaten einloggen, um in
 den Benutzerbereich zu gelangen. 
@@ -81,7 +81,7 @@ werden die jeweiligen Uhrzeiten gespeichert und der Mitarbeiter
 ausgeloggt.
 </p>
 
-<h5>Administrations-Bereich:</h5>
+<b>Administrations-Bereich:</b>
 <p>
 In diesen Bereich gelangt man ebenfalls durch Eingabe von
 Benutzernamen und Passwort.
@@ -127,7 +127,7 @@ Login-Bereich.
 </li>
 </ul>
 
-<h5>Datenbank:</h5>
+<b>Datenbank:</b>
 <p>
 Hier sind folgende Tabellen enthalten:
 </p>
