@@ -1,12 +1,12 @@
 {
-  "name": "realtimets",
+  "name": "RealTimeCC",
   "version": "1.0.0",
-  "description": "",
+  "description": "Arbeitszeiterfassung",
   "main": "main.js",
   "scripts": {
     "test": "test"
   },
-  "author": "",
+  "author": "Christian Wegner",
   "license": "ISC",
   "dependencies": {
     "@angular/cli": "^7.3.0",
