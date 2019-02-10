@@ -159,7 +159,7 @@ Programmierung mit JavaScript/TypeScript
 Umgang mit NodeJS - Installation/Benutzung von Modulen
 </li>
 <li>
-Anlegen eines einfachen Webservers mit ExpressJS und BodyParser - Routing, Middleware
+Anlegen eines Webservers mit ExpressJS und BodyParser - Routing, Middleware
 </li>
 <li>
 Nutzung von Template-Engines mit EJS (Embedded JavaScript templates)
